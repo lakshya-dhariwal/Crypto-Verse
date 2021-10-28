@@ -6,11 +6,19 @@ function CryptoDetail() {
   let { id } = useParams();
 
   const [coin, setCoin] = useState([]);
-  const [coinHist, setCoinHist] = useState([]);
   const key = "WPJDLMCJMMZNBSCM";
 
+  const [coinData, setCoinData] = useState([]);
+  const [coinTimes, setCoinTimes] = useState([]);
+  const [coinPrices, setCoinPrices] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  function checkStatus(response) {
+    if (response.ok) {
+      return Promise.resolve(response);
+    } else {
+      return Promise.reject(new Error(response.statusText));
+    }
+  }
   useEffect(() => {
     setLoading(true);
     try {
@@ -18,15 +26,21 @@ function CryptoDetail() {
         const res = await fetch(`https://api.coinpaprika.com/v1/coins/${id}`);
         const data = await res.json();
         setCoin(data);
+        checkStatus(res);
       };
       dataFetch();
       const dataFetchForChart = async () => {
-        const res = await fetch(
-          `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_WEEKLY&symbol=BTC&market=USD&apikey=${key}`
+        const response = await fetch(
+          "https://min-api.cryptocompare.com/data/v2/histominute?fsym=BTC&tsym=USD&limit=119&api_key=0646cc7b8a4d4b54926c74e0b20253b57fd4ee406df79b3d57d5439874960146"
         );
-        const data = await res.json();
-
-        setCoinHist(data["Time Series (Digital Currency Weekly)"]);
+        const json = await response.json();
+        const data = json.Data.Data;
+        const times = data.map((obj) => obj.time);
+        const prices = data.map((obj) => obj.high);
+        setCoinData(data);
+        setCoinTimes(times);
+        setCoinPrices(prices);
+        checkStatus(response);
       };
       dataFetchForChart();
       setLoading(false);
@@ -53,7 +67,11 @@ function CryptoDetail() {
       <h2>{coin.proof_type}</h2>
       <h3>Hashing Algo : {coin.hash_algorithm}</h3>
 
-      <Cryptochart coinHist={coinHist} />
+      <Cryptochart
+        coinData={coinData}
+        coinTimes={coinTimes}
+        coinPrices={coinPrices}
+      />
     </div>
   );
 }

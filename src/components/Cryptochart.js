@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Chart from "./Chart.js";
-function Cryptochart({ coinHist }) {
-  const [data, setData] = useState([]);
-  console.log(coinHist);
-  
-  useEffect(() => {
-    try {
-      for (var key in coinHist) {
-        if (coinHist.hasOwnProperty(key)) {
-          console.log(coinHist[key]);
-        }
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
+import { Line } from "react-chartjs-2";
+import LineChart from "./LineChart.js";
+function Cryptochart({ coinData, coinTimes, coinPrices }) {
+  console.log("Data", coinData, "Times", coinTimes, "Prices", coinPrices);
+
+  useEffect(() => {}, []);
+
   return (
     <div>
-      <div></div>
+      <div>
+        <LineChart times={coinTimes} prices={coinPrices} />
+      </div>
     </div>
   );
 }
