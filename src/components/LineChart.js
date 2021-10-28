@@ -35,19 +35,11 @@ function LineChart({ times, prices }) {
     },
 
     scales: {
-      xAxes: [
-        {
-          display: false,
-          gridLines: {},
-        },
-      ],
-      yAxes: [
-        {
-          display: false,
-          gridLines: {},
-        },
-      ],
+      y: {
+        beginAtZero: false,
+      },
     },
+    responsive: true,
     elements: {
       point: {
         radius: 1,
@@ -76,8 +68,8 @@ function LineChart({ times, prices }) {
     <>
       <div className="header">
         <h1 className="title">Price Chart</h1>
+        <Line data={data} options={options} />
       </div>
-      <Line data={data} options={options} />
     </>
   );
 }

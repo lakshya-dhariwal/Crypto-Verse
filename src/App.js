@@ -16,10 +16,10 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/coin/:id">
+          <Route exact path="/coin/:id/:ticker/:nameurl">
             <CryptoDetail />
           </Route>
-          <Route exact path="/news" >
+          <Route exact path="/news">
             <CryptoNews />
           </Route>
         </Switch>
