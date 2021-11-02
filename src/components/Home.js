@@ -1,44 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import Cryptocard from "./Cryptocard";
 function Home() {
   const [allCoins, setAllCoins] = useState([]);
-  const [search, setSearch] = useState(null);
-  const [result, setResult] = useState([]);
+  // const [search, setSearch] = useState(null);
+  // const [result, setResult] = useState([]);
 
-  const searchHandler = (e) => {
-    e.preventDefault();
-    setSearch(e.target.value.toUpperCase());
-    console.log("search", search);
+  // const searchHandler = (e) => {
+  //   e.preventDefault();
+  //   setSearch(e.target.value.toUpperCase());
+  //   console.log("search", search);
 
-    const dataFetchResult = async () => {
-      const res = await fetch(
-        "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=100&tsym=USD&api_key=e142b3392bca0be49cbbf828827d35fb69a9313f5b2ad7d9ad21d1d0093498dc"
-      );
-      const data = await res.json();
+  //   const dataFetchResult = async () => {
+  //     const res = await fetch(
+  //       "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=100&tsym=USD&api_key=e142b3392bca0be49cbbf828827d35fb69a9313f5b2ad7d9ad21d1d0093498dc"
+  //     );
+  //     const data = await res.json();
 
-      const newList = data.Data.filter((d) => {
-        return d.CoinInfo.Name == search;
-      });
-      setResult(newList);
-    };
-    dataFetchResult();
-    console.log("result", result);
-  };
+  //     const newList = data.Data.filter((d) => {
+  //       return d.CoinInfo.Name == search;
+  //     });
+  //     setResult(newList);
+  //   };
+  //   dataFetchResult();
+  //   console.log("result", result);
+  // };
   const dataFetch = async () => {
     const res = await fetch(
       "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=100&tsym=USD&api_key=e142b3392bca0be49cbbf828827d35fb69a9313f5b2ad7d9ad21d1d0093498dc"
     );
     const data = await res.json();
-    if (search === "" || search === null) {
-      setAllCoins(data.Data);
-    } else {
-      const newList = data.Data.filter((d) => {
-        return d.CoinInfo.Name === search;
-      });
-      setAllCoins(newList);
-    }
+    setAllCoins(data.Data);
+    // if (search === "" || search === null) {
+    //   setAllCoins(data.Data);
+    // } else {
+    //   const newList = data.Data.filter((d) => {
+    //     return d.CoinInfo.Name === search;
+    //   });
+    //   setAllCoins(newList);
+    // }
   };
 
   useEffect(() => {
@@ -61,7 +62,7 @@ function Home() {
         placeholder="Search Coin Ticker"
         aria-label="Search"
       /> */}
-      <p>
+      {/* <p>
         {result.map((coin) => {
           <Cryptocard
             className="crypto-card"
@@ -71,7 +72,7 @@ function Home() {
             name={coin.CoinInfo.FullName}
           />;
         })}
-      </p>
+      </p> */}
       <br />
       <h3>All Coins</h3>
       <div className="coin-grid">

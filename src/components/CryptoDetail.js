@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { useCallback } from "react";
 import Cryptochart from "./Cryptochart";
 
 function CryptoDetail() {
@@ -8,7 +8,7 @@ function CryptoDetail() {
 
   const [coin, setCoin] = useState({ symbol: "LOADING" });
 
-  const [chartType, setChartType] = useState("day");
+  // const [chartType, setChartType] = useState("day");
 
   const [coinData, setCoinData] = useState([]);
   const [coinTimes, setCoinTimes] = useState([]);
@@ -38,23 +38,26 @@ function CryptoDetail() {
     let ddmmyy = date.toLocaleDateString("en-UK");
     return ddmmyy + " " + formattedTime;
   };
-  const dataFetchForChart = async () => {
-    const response = await fetch(
-      `https://min-api.cryptocompare.com/data/v2/histo${chartType}?fsym=${id}&tsym=USD&limit=119&api_key=e142b3392bca0be49cbbf828827d35fb69a9313f5b2ad7d9ad21d1d0093498dc`
-    );
-    const json = await response.json();
-    const data = json.Data.Data;
-    const times = data.map((obj) => unixToTime(obj.time));
-    const prices = data.map((obj) => obj.high);
-    setCoinData(data);
-    setCoinTimes(times);
-    setCoinPrices(prices);
-    checkStatus(response);
-  };
-  const radioChange = (e) => {
-    setChartType(e.target.value);
-    dataFetchForChart();
-  };
+  const dataFetchForChart = useCallback(() => {
+    const a = async () => {
+      const response = await fetch(
+        `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${id}&tsym=USD&limit=119&api_key=e142b3392bca0be49cbbf828827d35fb69a9313f5b2ad7d9ad21d1d0093498dc`
+      );
+      const json = await response.json();
+      const data = json.Data.Data;
+      const times = data.map((obj) => unixToTime(obj.time));
+      const prices = data.map((obj) => obj.high);
+      setCoinData(data);
+      setCoinTimes(times);
+      setCoinPrices(prices);
+      checkStatus(response);
+    };
+    a();
+  }, [id]);
+  // const radioChange = (e) => {
+  //   setChartType(e.target.value);
+  //   dataFetchForChart();
+  // };
 
   useEffect(() => {
     setLoading(true);
@@ -69,15 +72,15 @@ function CryptoDetail() {
         const data = await res.json();
         setCoin(data);
         checkStatus(res);
+        dataFetchForChart();
       };
       dataFetch();
 
-      dataFetchForChart();
       setLoading(false);
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [dataFetchForChart, nameurl, ticker]);
 
   if (loading) {
     return (
