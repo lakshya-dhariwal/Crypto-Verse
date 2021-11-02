@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar.js";
 import Home from "./components/Home.js";
 import CryptoNews from "./components/CryptoNews.js";
 import CryptoDetail from "./components/CryptoDetail.js";
-import "./App.css";
+import "./styles/index.scss";
 
 function App() {
   return (

@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&family=Roboto:wght@100;300&display=swap");
+$accentBlue: #5674fc;
+$darkBlue: #001f3f;
+$offWhite: #e9e9ed;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
+  Link {
+    text-decoration: none;
+  }
+}
+
+body {
+  background-color: $offWhite;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  color: $accentBlue;
+}
+.home {
+  text-align: center;
+  margin-top: 2rem;
+}
+.link {
+  text-decoration: none;
+}
+.card {
+  padding: 1rem;
+  border-radius: 3rem;
+  background-color: $offWhite;
+}
+
+@import "nav";
+@import "news";
+@import "crypto-card";
+@import "detail-page";

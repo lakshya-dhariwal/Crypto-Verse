@@ -8,8 +8,8 @@ function LineChart({ times, prices }) {
         label: "Price",
         data: prices,
         fill: true,
-        backgroundColor: "rgb(228,210,249)",
-        borderColor: "rgba(144,9,183, 0.7)",
+        backgroundColor: "rgb(86,116,252, 0.7)",
+        borderColor: "rgb(86,116,252)",
       },
     ],
   };
@@ -23,6 +23,11 @@ function LineChart({ times, prices }) {
 
     legend: {
       display: false,
+      labels: {
+        font: {
+          color: "rgb(255,255,255)",
+        },
+      },
     },
 
     layout: {
@@ -37,6 +42,9 @@ function LineChart({ times, prices }) {
     scales: {
       y: {
         beginAtZero: false,
+      },
+      xAxis: {
+        display: false,
       },
     },
     responsive: true,
@@ -58,19 +66,19 @@ function LineChart({ times, prices }) {
       xPadding: 10,
       position: "nearest",
       caretSize: 10,
-      backgroundColor: "rgba(255,255,255,.9)",
+      backgroundColor: "rgb(233,233,237,.9)",
       bodyFontSize: 15,
-      bodyFontColor: "#303030",
+      bodyFontColor: "#001f3f",
     },
   };
 
   return (
-    <>
-      <div className="header">
+    <div className="chart-conatiner">
+      <div className="header chart ">
         <h1 className="title">Price Chart</h1>
         <Line data={data} options={options} />
       </div>
-    </>
+    </div>
   );
 }
 

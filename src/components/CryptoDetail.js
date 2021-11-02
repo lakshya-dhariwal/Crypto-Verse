@@ -6,8 +6,8 @@ import Cryptochart from "./Cryptochart";
 function CryptoDetail() {
   let { id, ticker, nameurl } = useParams();
 
-  const [coin, setCoin] = useState({ symbol: "BTC" });
-  const key = "WPJDLMCJMMZNBSCM";
+  const [coin, setCoin] = useState({ symbol: "LOADING" });
+
   const [chartType, setChartType] = useState("day");
 
   const [coinData, setCoinData] = useState([]);
@@ -40,7 +40,7 @@ function CryptoDetail() {
   };
   const dataFetchForChart = async () => {
     const response = await fetch(
-      `https://min-api.cryptocompare.com/data/v2/histo${chartType}?fsym=${id}&tsym=USD&limit=119&api_key=0646cc7b8a4d4b54926c74e0b20253b57fd4ee406df79b3d57d5439874960146`
+      `https://min-api.cryptocompare.com/data/v2/histo${chartType}?fsym=${id}&tsym=USD&limit=119&api_key=e142b3392bca0be49cbbf828827d35fb69a9313f5b2ad7d9ad21d1d0093498dc`
     );
     const json = await response.json();
     const data = json.Data.Data;
@@ -60,9 +60,12 @@ function CryptoDetail() {
     setLoading(true);
     try {
       const dataFetch = async () => {
+        let n;
+        n = await nameurl.replace(/%20/g, " ");
         const res = await fetch(
-          `https://api.coinpaprika.com/v1/coins/${ticker}-${nameurl}`
+          `https://api.coinpaprika.com/v1/coins/${ticker}-${n}`
         );
+
         const data = await res.json();
         setCoin(data);
         checkStatus(res);
@@ -86,23 +89,31 @@ function CryptoDetail() {
     );
   }
   return (
-    <div>
-      <h1>{coin.name}</h1>
-      <h2>${coin.symbol}</h2>
-      <h2> Rank {coin.rank}</h2>
-      <p>{coin.description}</p>
-      <h2>{coin.proof_type}</h2>
-      <h3>Hashing Algo : {coin.hash_algorithm}</h3>
-      <div onChange={radioChange}>
-        <input type="radio" value="day" name="chartType" /> Daily
-        <input type="radio" value="hour" name="chartType" /> Hourly
-        <input type="radio" value="minute" name="chartType" /> Minute
+    <div className="detail-page ">
+      <div className="detail card">
+        <h1>{coin.name}</h1>
+        <h2>${coin.symbol}</h2>
+        <h2> Rank {coin.rank}</h2>
+        <p>{coin.description}</p>
+        <h2>{coin.proof_type}</h2>
+        <h3>Hashing Algo : {coin.hash_algorithm}</h3>
       </div>
-      <Cryptochart
-        coinData={coinData}
-        coinTimes={coinTimes}
-        coinPrices={coinPrices}
-      />
+      <div className="chart-panel card">
+        {/* <form onChange={radioChange}>
+            <input type="radio" id="day" name="chartType" value="day" /> {" "}
+          <label for="day">Day</label>
+            <input type="radio" id="hour" name="chartType" value="hour" /> {" "}
+          <label for="hour">Hourly</label>
+            <input type="radio" id="minute" name="chartType" value="Minute" /> {" "}
+          <label for="minute">Minute</label>
+        </form> */}
+
+        <Cryptochart
+          coinData={coinData}
+          coinTimes={coinTimes}
+          coinPrices={coinPrices}
+        />
+      </div>
     </div>
   );
 }

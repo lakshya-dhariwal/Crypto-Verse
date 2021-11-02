@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import React from "react";
 import LineChart from "./LineChart.js";
 function Cryptochart({ coinData, coinTimes, coinPrices }) {
   return (

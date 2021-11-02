@@ -1,0 +1,38 @@
+.nav {
+  width: 100%;
+  background-color: $accentBlue;
+  position: relative;
+  border-bottom: solid 1px #fff;
+  .nav-header {
+    display: inline;
+
+    .nav-title {
+      display: flex;
+
+      justify-content: space-between;
+      font-size: 22px;
+      color: $accentBlue;
+      padding: 1rem;
+      div {
+        span {
+          margin: 0rem 2rem;
+          padding: 1rem;
+          font-weight: bold;
+          color: #fff;
+          font-size: 1.25rem;
+          transition: all 0.5s ease;
+          &:hover {
+            color: $darkBlue;
+          }
+        }
+        #logo {
+          font-size: 2rem;
+          color: $darkBlue;
+        }
+      }
+    }
+  }
+  .nav-btn {
+    display: none;
+  }
+}

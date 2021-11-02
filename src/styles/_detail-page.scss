@@ -1,0 +1,59 @@
+.detail-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: $offWhite;
+  a {
+    text-decoration: none;
+  }
+  .detail {
+    text-align: center;
+    margin-top: 2rem;
+    border-radius: 45px;
+    background: #e0e0e0;
+    box-shadow: inset 8px 8px 16px #bebebe, inset -8px -8px 16px #ffffff;
+
+    max-width: 60%;
+    color: $accentBlue;
+    * {
+      padding-top: 1rem;
+    }
+    h1 {
+      color: $darkBlue;
+    }
+  }
+  .chart-panel {
+    padding-top: 1rem;
+    text-align: center;
+    color: $darkBlue;
+    margin-top: 2rem;
+    border-radius: 45px;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+    input {
+      padding: 1rem;
+    }
+    form {
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+/Edge */
+      user-select: none; /* Standard */
+    }
+    .chart-conatiner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 3rem;
+      color: $darkBlue;
+      text-align: center;
+
+      .chart {
+        padding: 1rem;
+        border-radius: 3rem;
+        background-color: $offWhite;
+        width: 40rem;
+      }
+    }
+  }
+}

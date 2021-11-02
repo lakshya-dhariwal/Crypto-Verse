@@ -1,0 +1,47 @@
+.crypto-card {
+  padding: 1rem;
+  width: 17rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  transition: all 0.5s ease;
+  border-radius: 56px;
+  background: $offWhite;
+  box-shadow: 5px 5px 11px #bfbfc2, -5px -5px 11px #ffffff;
+  Link {
+    text-decoration: none;
+    &:hover {
+      color: $offWhite;
+    }
+  }
+  h1 {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // color: #2b2c2d;
+    color: $darkBlue;
+    transition: all 0.5s ease;
+    &:hover {
+    }
+    h2 {
+      font-weight: 1000;
+      color: $darkBlue;
+      transition: all 0.5s ease;
+      &:hover {
+      }
+    }
+  }
+  &:hover {
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+  }
+}
+
+.coin-grid {
+  display: grid;
+  margin-left: 3rem;
+  text-align: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}

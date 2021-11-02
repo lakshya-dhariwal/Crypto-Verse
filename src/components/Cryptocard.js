@@ -1,23 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Cryptocard({ ticker, image, price, id, name }) {
+function Cryptocard({ ticker, id, name }) {
   return (
-    <div className="container border">
-      <h1>
-        <h3>
-          {name} <span>{/* <img src={require(image)} alt={name} /> */}</span>
-        </h3>
-        <h4>${ticker}</h4>
-        <h4></h4>
-
-        <br />
+    <div className="crypto-card ">
+      <div className="container border ">
         <Link
+          style={{ textDecoration: "none" }}
           to={`/coin/${ticker}/${ticker.toLowerCase()}/${name.toLowerCase()}`}
         >
-          More
+          <h1>
+            <h3>{name} </h3>
+            <h4>${ticker}</h4>
+          </h1>
         </Link>
-      </h1>
+      </div>
     </div>
   );
 }
