@@ -20,7 +20,7 @@ function Navbar() {
               aria-current="page"
               to="/"
             >
-              <span>Cryptocurrencies</span>
+              <span id="nav-link-crypto">Cryptocurrencies</span>
             </Link>
             <Link
               style={{ textDecoration: "none" }}

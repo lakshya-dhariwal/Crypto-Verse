@@ -12,7 +12,7 @@ function NewsCard({ newsItem }) {
       >
         <div className=" container border card">
           <h3>{newsItem.title}</h3>
-          <p>{newsItem.body}</p>
+
           <div>
             <h6>{newsItem.source}</h6>
 

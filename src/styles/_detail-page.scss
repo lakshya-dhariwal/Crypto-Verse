@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: space-between;
   color: $offWhite;
+  overflow-x: hidden;
   a {
     text-decoration: none;
   }
@@ -40,7 +41,7 @@
       -ms-user-select: none; /* IE10+/Edge */
       user-select: none; /* Standard */
     }
-    .chart-conatiner {
+    .chart-container {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -52,8 +53,19 @@
         padding: 1rem;
         border-radius: 3rem;
         background-color: $offWhite;
-        width: 40rem;
       }
     }
+  }
+}
+@media (min-width: 569px) and (max-width: 768px) {
+  .chart-container {
+    .chart {
+      width: 30rem;
+    }
+  }
+}
+@media only screen and (max-width: 568px) {
+  .chart {
+    width: 18rem;
   }
 }

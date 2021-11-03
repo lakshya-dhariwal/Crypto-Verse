@@ -73,7 +73,7 @@ function LineChart({ times, prices }) {
   };
 
   return (
-    <div className="chart-conatiner">
+    <div className="chart-container">
       <div className="header chart ">
         <h1 className="title">Price Chart</h1>
         <Line data={data} options={options} />
